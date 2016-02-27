@@ -10,9 +10,10 @@ var forceStr = 1;
 
 function init() {
 
-  $('.numbers').click(wingClick);
-  $('#fire').click(fire);
-  $('#force').click(force);
+  $('.numbers').on('click', wingClick);
+  $('#fire').on('click',fire);
+  $('#force').on('click',force);
+  $('#reset').on('click', reset);
 
   randoStars();
 }
@@ -46,14 +47,15 @@ function wingClick(event) {
 }
 
 function fire() {
-  console.log('boom goes the dynamite');
+  console.log('"A Jedi uses the Force for knowledge and defense, never for attack." - Yoda');
   
   var sum = 0;
   
-  $('.selected').each(function(i, e) {
+  $('.selected').each(function(i, e) { //loss detection var?
       sum += Number($('.selected').eq(i).text());
     });
-  console.log(sum);
+  console.log('this', sum);
+  console.log('stars', rand);
 
   
 
@@ -65,17 +67,17 @@ function fire() {
   }
   else {
     $('.selected').removeClass('selected');
-    $('.miss').css('visibility', 'inherit');
+    $('.miss').css('visibility', 'visible');
     lossDet(sum);
   }
 
 }
 
 function force() {
-  console.log('"Wars not make one great" - Yoda'); //egg
+  console.log('"Wars not make one great." - Yoda'); //egg
   
   var forceR = $('span').html();
-  if(forceR > 0) {
+  if(forceR > 1) {
     $('.selected').removeClass('selected');
     forceR -= 1;
     $('span').html(forceR);
@@ -83,7 +85,13 @@ function force() {
     randoStars();
   }
   else {
-    $('.drain').css('visibility', 'inherit');
+    $('.selected').removeClass('selected');
+    forceR -= 1;
+    $('span').html(forceR);
+    $('.miss').css('visibility', 'hidden');
+    $('.drain').css('visibility', 'visible');
+    $('#force').off('click',force);
+    randoStars();
     forceStr = 0;
   }
 }
@@ -91,20 +99,46 @@ function force() {
 
 function winDet(sum) {
   sumTot += sum;
+  console.log('tot', sumTot);
   if(sumTot === 45) {
       $stars.empty();
-      $('.win').css('display', 'inherit');
+      $('.win').css('display', 'block');
+      $('.numbers').on('click', wingClick);
+      $('#fire').off('click',fire);
+      
   }
   else {
     randoStars();
   }
 }
 
-function lossDet(sum) {
+function lossDet(sum) {  //is broken-ish
   if(sum + sumTot === 45 && forceStr === 0) {
     $stars.empty();
-    $('.loss').css('display', 'inherit');
+    $('.loss').css('display', 'block');
+    $('.numbers').css('visibility', 'hidden');
+    $('#fire').css('visibility', 'hidden');
+    $('#force').css('visibility', 'hidden');
+
   }
+}
+
+function reset() {
+  sumTot=0;
+  forceStr=1;
+  $('.miss').css('visibility', 'hidden');
+  $('.loss').css('display', 'none');
+  $('.win').css('display', 'none');
+  $('.drain').css('visibility', 'hidden');
+  $('.numbers').css('visibility', 'visible');
+  $('#fire').css('visibility', 'visible');
+  $('#force').css('visibility', 'visible');
+  $('#force').on('click',force);
+
+  $('span').html(3);
+  randoStars();
+
+
 }
 
 

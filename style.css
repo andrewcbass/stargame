@@ -60,10 +60,12 @@ h1 {
 
 .win {
   display: none;
+  font-size: 60px;
 }
 
 .loss {
   display: none;
+  font-size: 60px;
 }
 
 h2 {
@@ -81,6 +83,7 @@ img {
 button {
   margin:auto;
   width: 200px;
+  margin-top: 10px;
 }
 
 .buttons {
