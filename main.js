@@ -1,6 +1,5 @@
 'use strict'
 
-
 $(document).ready(init);
 
 var rand;
@@ -31,7 +30,7 @@ function randoStars() {
     $star = $('<td>').addClass('star').append($image);
     arr.push($star);
   }
-  
+
   $('.stars').append(arr);
 }
 
@@ -47,17 +46,13 @@ function wingClick(event) {
 }
 
 function fire() {
-  console.log('"A Jedi uses the Force for knowledge and defense, never for attack." - Yoda');
-  
+  console.log('"A Jedi uses the Force for knowledge and defense, never for attack." - Yoda'); //egg
+
   var sum = 0;
-  
-  $('.selected').each(function(i, e) { //loss detection var?
+
+  $('.selected').each(function(i, e) { //loss detection var could fix?
       sum += Number($('.selected').eq(i).text());
     });
-  console.log('this', sum);
-  console.log('stars', rand);
-
-  
 
   if(sum === rand) {
     $('.selected').addClass('used').removeClass('selected');
@@ -75,7 +70,7 @@ function fire() {
 
 function force() {
   console.log('"Wars not make one great." - Yoda'); //egg
-  
+
   var forceR = $('span').html();
   if(forceR > 1) {
     $('.selected').removeClass('selected');
@@ -99,13 +94,13 @@ function force() {
 
 function winDet(sum) {
   sumTot += sum;
-  console.log('tot', sumTot);
+
   if(sumTot === 45) {
       $stars.empty();
       $('.win').css('display', 'block');
       $('.numbers').on('click', wingClick);
       $('#fire').off('click',fire);
-      
+
   }
   else {
     randoStars();
