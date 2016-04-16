@@ -111,7 +111,7 @@ function lossDet(sum) {  //is broken-ish
   if(sum + sumTot === 45 && forceStr === 0) {
     $stars.empty();
     $('.loss').css('display', 'block');
-    $('.numbers').css('visibility', 'hidden');
+    $('.numbers').addClass('used');
     $('#fire').css('visibility', 'hidden');
     $('#force').css('visibility', 'hidden');
 
@@ -125,7 +125,8 @@ function reset() {
   $('.loss').css('display', 'none');
   $('.win').css('display', 'none');
   $('.drain').css('visibility', 'hidden');
-  $('.numbers').css('visibility', 'visible');
+  $('.numbers').removeClass("used");
+  $('.numbers').removeClass("selected");
   $('#fire').css('visibility', 'visible');
   $('#force').css('visibility', 'visible');
   $('#force').on('click',force);
