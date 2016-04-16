@@ -1,8 +1,0 @@
-notes from meeting
-styling is good overall
-suggest using my own image file to make it cleaner
-
-reccomends commenting the functions
-
-maybe sketch out my functions on paper
-'wishful coding'

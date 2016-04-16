@@ -26,7 +26,7 @@ function randoStars() {
   var arr =[];
   var $star;
   for(var i = 0; i < rand; i++) {
-    var $image = $('<img>').attr('src', 'deathstar.ico');
+    var $image = $('<img>').attr('src', 'images/deathstar.ico');
     $star = $('<td>').addClass('star').append($image);
     arr.push($star);
   }
